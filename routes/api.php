@@ -26,3 +26,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/artikel/','api\ArtikelController@index');
 Route::get('/artikel/show/{id}','api\ArtikelController@show');
 Route::get('/artikel/new/','api\ArtikelController@new');
+
+Route::group([
+    'prefix' => 'auth'
+], function () {
+    Route::post('login', 'test\AuthController@login');
+    Route::post('signup', 'test\AuthController@signup');
+  
+    Route::group([
+      'middleware' => 'auth:api'
+    ], function() {
+        Route::get('logout', 'test\AuthController@logout');
+        Route::get('user', 'test\AuthController@user');
+    });
+});
