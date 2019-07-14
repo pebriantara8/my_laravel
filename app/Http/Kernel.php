@@ -20,6 +20,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
     ];
+    
 
     /**
      * The application's route middleware groups.
@@ -50,16 +51,32 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+    // protected $routeMiddleware = [
+    //     'auth' => \App\Http\Middleware\Authenticate::class,
+    //     'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+    //     'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+    //     'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+    //     'can' => \Illuminate\Auth\Middleware\Authorize::class,
+    //     'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+    //     'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+    //     'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+    //     'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+    // ];
+
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
-        'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'auth' => \Soccer\Http\Middleware\Authenticate::class,
+            'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+            'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+            'can' => \Illuminate\Auth\Middleware\Authorize::class,
+            'guest' => \Soccer\Http\Middleware\RedirectIfAuthenticated::class,
+            'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+            'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+            'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+            
+            // THIS LINES HAS BEEN ADDED to JWT Implementation
+            'jwt.auth' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
+            'jwt.refresh' => \Tymon\JWTAuth\Http\Middleware\RefreshToken::class,
     ];
 
     /**

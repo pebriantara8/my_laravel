@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/ap','ap\ArtikelController@index');
 Route::get('/ap/artikel','ap\ArtikelController@index');
 Route::get('/ap/artikel/add','ap\ArtikelController@add');
 Route::get('/ap/artikel/view/{id}','ap\ArtikelController@view');

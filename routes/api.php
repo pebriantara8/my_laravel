@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 // Route::resource('/artikel', 'api\ArtikelController', [
 //     'except' => ['edit', 'show', 'store']
@@ -27,16 +27,23 @@ Route::get('/artikel/','api\ArtikelController@index');
 Route::get('/artikel/show/{id}','api\ArtikelController@show');
 Route::get('/artikel/new/','api\ArtikelController@new');
 
-Route::group([
-    'prefix' => 'auth'
-], function () {
-    Route::post('login', 'test\AuthController@login');
-    Route::post('signup', 'test\AuthController@signup');
+// Route::group([
+//     'prefix' => 'auth'
+// ], function () {
+//     Route::post('login', 'test\AuthController@login');
+//     Route::post('signup', 'test\AuthController@signup');
   
-    Route::group([
-      'middleware' => 'auth:api'
-    ], function() {
-        Route::get('logout', 'test\AuthController@logout');
-        Route::get('user', 'test\AuthController@user');
-    });
+//     Route::group([
+//       'middleware' => 'auth:api'
+//     ], function() {
+//         Route::get('logout', 'test\AuthController@logout');
+//         Route::get('user', 'test\AuthController@user');
+//     });
+// });
+
+// login route
+Route::post('login', 'APILoginController@login');
+// users is a route protected by jwt
+Route::middleware('jwt.auth')->get('users', function () {
+    return auth('api')->user();
 });

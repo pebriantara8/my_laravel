@@ -11,7 +11,7 @@ class User2 extends Model
      *
      * @var string
      */
-    protected $table = 'user';
+    protected $table = 'users';
 
     public $timestamps = true;
     
